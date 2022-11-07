@@ -6,6 +6,8 @@ public class BTree {
 
     private int T;
 
+
+
     public class Node {
         int n;
         Book key[] = new Book[2 * T - 1];
@@ -101,17 +103,17 @@ public class BTree {
     final private void _Insert(Node x, Book book) {
         int k = book.getCode();
         if (x.leaf) {
-            int i = 0;
+            int i;
             for (i = x.n - 1; i >= 0 && k < x.key[i].getCode(); i--) {
                 x.key[i + 1] = x.key[i];
             }
             x.key[i + 1] = book;
             x.n = x.n + 1;
         } else {
-            int i = 0;
+            int i;
             for (i = x.n - 1; i >= 0 && k < x.key[i].getCode(); i--) {
             }
-            ;
+
             i++;
             Node tmp = x.child[i];
             if (tmp.n == 2 * T - 1) {
@@ -359,6 +361,26 @@ public class BTree {
             }
         }
     }
+    private int count;
+    private void count(Node x) {
+        assert (x == null);
+        for (int i = 0; i < x.n; i++) {
+            this.count++ ;
+        }
+        if (!x.leaf) {
+            for (int i = 0; i < x.n + 1; i++) {
+                count(x.child[i]);
+            }
+        }
+    }
 
-
+    public void count() {
+        count = 0;
+        count(root);
+    }
+    public int getCount() {
+        return count;
+    }
+    public void inOrderTraversal() {
+    }
 }

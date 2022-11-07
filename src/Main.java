@@ -19,27 +19,70 @@ public class Main {
                 "Input data & insert to the tree",
                 "Breadth-first traversal",
                 "In-order traversal",
-                "In-order traversal",
                 "Delete by code",
-                "Delete by code",
-                "Count the number of books"};
+                "Count the number of books",
+                "Exit."};
+        int choice;
         ArrayList<Book> books = new ArrayList<>();
-        try {
-            readFile("book.txt", books);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        for (int i = 0; i < books.size(); i++) {
-//            System.out.println(books.get(i).toString());
-            b.Insert(books.get(i));
+        while(true) {
+            System.out.println("\n----------------MENU---------------");
+            choice = getChoice(menu);
+            if (choice == menu.length) {
+                break;
+            }
+
+            switch (choice){
+                // Load data from file
+                case 1:
+                    try {
+                        readFile("book.txt", books);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    for (int i = 0; i < books.size(); i++) {
+                    //System.out.println(books.get(i).toString());
+                        b.Insert(books.get(i));
+                    }
+                    System.out.println("Load done!");
+                    break;
+                case 2:
+                    System.err.println("Tinh nang chua hoan thien!");
+                    break;
+                case 3:
+                    //Breadth-first traversal
+                    b.Show();
+                    break;
+                case 4:
+                    // In-order traversal
+                    System.err.println("Tinh nang chua hoan thien!");
+                    b.inOrderTraversal();
+                    break;
+                case 5:
+                    // Delete by code
+                    int code = Inputter.inputInteger("Enter code: ", false, false);
+                    BTree.Node x = b.Search(b.getRoot(), code);
+
+                    if (x == null) {
+                        System.out.println("Can not find code in tree.");
+                    } else {
+                        b.Remove(x.key[x.Find(code)]);
+                        System.out.println("Remove done!");
+                    }
+
+                    break;
+                case 6:
+                    // Count the number of books
+                    b.count();
+                    int numberOfBook = b.getCount();
+                    System.out.println("The number of books in tree: " + numberOfBook);
+                    break;
+            }
+
         }
-        b.Show();
-        System.out.println("After remove 3: \n --------------------------- \n");
-        BTree.Node x = b.Search(b.getRoot(), 3);
-        b.Remove(x.key[x.Find(3)]);
-//        System.out.println();
-        b.Show();
+//        b.Show();
+
     }
 
     /**
@@ -83,7 +126,7 @@ public class Main {
     }
 
     public static int getChoice(String[] mainScreen) {
-        int i = 2;
+        int i = 0;
         for (String str : mainScreen) {
             i++;
             System.out.println(i + ". " + str);
