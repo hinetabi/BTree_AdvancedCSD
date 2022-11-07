@@ -1,0 +1,7 @@
+1;Nguoi chong vui tinh;10;10000;Pham Tuan Viet
+5;Ke huy diet trai tim;13;15000;Pham Tuan Lam
+10;Nguoi dep va Quai Vat;1;23000;Le Thanh Binh
+2;Ke trom trai tim;11;20000;Nguyen Dac Hoang Long
+4;Co be quang khan do;11;20000;Tran Duc Lam
+3;Ke cuop mat trang;7;30000;Le Thanh Binh
+11;Gio thi anh oi ta da mat nhau roi;12;15000;Tran Duc Binh
