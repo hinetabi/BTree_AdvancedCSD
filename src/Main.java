@@ -42,13 +42,20 @@ public class Main {
                     }
 
                     for (int i = 0; i < books.size(); i++) {
+                        if (b.Contain(books.get(i))) {
+                            continue;
+                        }
                     //System.out.println(books.get(i).toString());
                         b.Insert(books.get(i));
                     }
                     System.out.println("Load done!");
                     break;
                 case 2:
-                    System.err.println("Tinh nang chua hoan thien!");
+                    Book book = inputBook();
+                    if (!b.Contain(book)) {
+                        b.Insert(book);
+                        System.out.println("Insert done!");
+                    }
                     break;
                 case 3:
                     //Breadth-first traversal
@@ -125,6 +132,11 @@ public class Main {
         return new Book(code, title, quantity, price, author);
     }
 
+    /**
+     * get choice
+     * @param mainScreen
+     * @return
+     */
     public static int getChoice(String[] mainScreen) {
         int i = 0;
         for (String str : mainScreen) {

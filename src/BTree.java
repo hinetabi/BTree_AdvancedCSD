@@ -6,8 +6,6 @@ public class BTree {
 
     private int T;
 
-
-
     public class Node {
         int n;
         Book key[] = new Book[2 * T - 1];
